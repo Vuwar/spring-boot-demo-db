@@ -23,6 +23,9 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_REPO_OWNER: ${{ github.repository_owner }}
       IMAGE_TAG: ${{ github.sha }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB}}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD}}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER}}
 
 
     steps:
@@ -51,6 +54,10 @@ jobs:
             echo "SERVER_HOST=${{ secrets.DEV_SERVER_HOST }}" >> $GITHUB_ENV
             echo "SERVER_PORT=${{ secrets.DEV_SERVER_PORT }}" >> $GITHUB_ENV
             echo "TAG=dev" >> $GITHUB_ENV
+            
+            echo "POSTGRES_DB=${{ secrets.POSTGRES_DB}}" >> $GITHUB_ENV
+            echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD}}" >> $GITHUB_ENV
+            echo "POSTGRES_USER=${{ secrets.POSTGRES_USER}}" >> $GITHUB_ENV
           fi          
           chmod 600 $HOME/.ssh/private_key
 

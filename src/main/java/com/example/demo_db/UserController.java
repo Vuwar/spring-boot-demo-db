@@ -39,4 +39,26 @@ public class UserController {
                 .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserEntity> updateUser(@PathVariable Long id,
+                                                 @RequestParam("name") String name,
+                                                 @RequestParam("password") String password) {
+        return userRepository.findById(id).map(user -> {
+            user.setName(name);
+            user.setPassword(password);
+            UserEntity updatedUser = userRepository.save(user);
+            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
