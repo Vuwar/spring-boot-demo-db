@@ -20,6 +20,9 @@ public class UserEntity {
         this.name = name;
         this.password = password;
     }
+
+    public UserEntity() {
+    }
 }
 
 
