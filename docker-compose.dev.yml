@@ -16,10 +16,10 @@ services:
       - db-data:/var/lib/postgresql/data
 
   backend:
-    #    image: ghcr.io/${GITHUB_REPO_OWNER}/kamil-demo-backend:${TAG}
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/${GITHUB_REPO_OWNER}/vugar-demo-db:${TAG}
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
     container_name: vugar-demo-db
     depends_on:
       - db
