@@ -1,13 +1,17 @@
-version: '3.8'
+#version: '3.8'
 
 services:
   db:
     image: postgres:latest
     container_name: spring-boot-demo-db
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+#      POSTGRES_USER: ${POSTGRES_USER}
+#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#      POSTGRES_DB: ${POSTGRES_DB}
+
+      POSTGRES_USER: vuqar123
+      POSTGRES_PASSWORD: pass123
+      POSTGRES_DB: postgres
     ports:
       - "5411:5432"
     networks:
@@ -16,18 +20,25 @@ services:
       - db-data:/var/lib/postgresql/data
 
   backend:
-    image: ghcr.io/${GITHUB_REPO_OWNER}/vugar-demo-db:${TAG}
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
+#    For deploying through github
+#    image: ghcr.io/vuwar/vugar-demo-db:${TAG}
+
+#    For deploying via docker
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: vugar-demo-db
     depends_on:
       - db
     ports:
       - "8012:8080"
     environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
+#      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+#      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
-      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_USERNAME: vuqar123
       SPRING_DATASOURCE_PASSWORD: pass123
       SPRING_PROFILES_ACTIVE: dev
     networks:
