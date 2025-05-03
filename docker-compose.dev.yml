@@ -21,7 +21,7 @@ services:
 
   backend:
 #    For deploying through github
-#    image: ghcr.io/vuwar/vugar-demo-db:${TAG}
+    image: ghcr.io/vuwar/vugar-demo-db:${TAG}
 
 #    For deploying via docker
     build:
