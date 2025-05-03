@@ -20,8 +20,8 @@ services:
       - db-data:/var/lib/postgresql/data
 
   backend:
-#    For deploying through github
-    image: ghcr.io/vuwar/vugar-demo-db:${TAG}
+#    For deploying through GitHub
+#    image: ghcr.io/vuwar/vugar-demo-db:${TAG}
 
 #    For deploying via docker
     build:
